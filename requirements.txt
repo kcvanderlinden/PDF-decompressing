@@ -1,0 +1,8 @@
+collections
+re
+spacy
+spacy_langdetect
+operator
+pymupdf
+json
+jellyfish
