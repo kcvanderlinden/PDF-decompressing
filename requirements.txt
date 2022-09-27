@@ -1,8 +1,5 @@
 collections
 re
-spacy
-spacy_langdetect
 operator
-pymupdf
-json
+pymupdf # is de hoofdpackage waardoor package fitz beschikbaar is.
 jellyfish
