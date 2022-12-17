@@ -1,5 +1,8 @@
-collections
-re
-operator
-pymupdf # is de hoofdpackage waardoor package fitz beschikbaar is.
-jellyfish
+# collections == any
+# re == any
+# operator == any
+PyMuPDF == 1.21.1 # is de hoofdpackage waardoor package fitz beschikbaar is.
+jellyfish == 0.9.0
+numpy == 1.23.5
+pandas == 1.5.2
+
