@@ -19,3 +19,6 @@ With this project I primarily focus on converting a PDF file to readable text wi
 
 ## How constructed?
 Just human logic, no fancy machine/deep learning at this moment. Maybe I can inspire someone or be of service by producing a test sample for a model.
+
+## How use?
+Install required packagaes, import file to project and call function pdf_to_dict('./location/to/file.pdf'). Output for now, a list of dictionaries.
