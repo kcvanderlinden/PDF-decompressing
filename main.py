@@ -275,8 +275,8 @@ def pdf_to_dict(path):
     endscript_list = [elements.index(elem)-1 for elem in elements if elem['tag'] == '<p_break>'] # make list of last entries on page
     elements = pop_repeating(elements, endscript_list)
 
-    primary_heading = deter_primary_h(elements)
-    return elements, primary_heading
+    # primary_heading = deter_primary_h(elements)
+    return elements
 
 def pop_repeating(elements, s_list): # based on list of first or last entries on page, deter if these entries are similair and thus a standard footer for example.
     sim_list = []
