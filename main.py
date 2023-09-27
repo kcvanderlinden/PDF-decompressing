@@ -5,6 +5,24 @@ import fitz
 import jellyfish
 import pandas as pd
 
+def pdf_to_dict(path):
+
+    doc = fitz.open(path)
+
+    font_counts, styles = fonts(doc, granularity=True)
+
+    size_tag = font_tags(font_counts, styles, granularity=True)
+
+    elements = headers_para(doc, size_tag)
+    topscript_list = [elements.index(elem)+1 for elem in elements if elem['tag'] == '<p_break>'] # make list of first entries on page
+    topscript_list.pop(-1) # remove last, because there is no topscript on the next page after the last page
+    elements = pop_repeating(elements, topscript_list)
+    endscript_list = [elements.index(elem)-1 for elem in elements if elem['tag'] == '<p_break>'] # make list of last entries on page
+    elements = pop_repeating(elements, endscript_list)
+
+    # primary_heading = deter_primary_h(elements)
+    return elements
+
 # functie om te controleren of value een nummer is.
 def digitize(value): # NOT IN  USE
     try:
@@ -259,24 +277,6 @@ def headers_para(doc, size_tag):
         page_num += 1
     
     return header_para
-
-def pdf_to_dict(path):
-
-    doc = fitz.open(path)
-
-    font_counts, styles = fonts(doc, granularity=True)
-
-    size_tag = font_tags(font_counts, styles, granularity=True)
-
-    elements = headers_para(doc, size_tag)
-    topscript_list = [elements.index(elem)+1 for elem in elements if elem['tag'] == '<p_break>'] # make list of first entries on page
-    topscript_list.pop(-1) # remove last, because there is no topscript on the next page after the last page
-    elements = pop_repeating(elements, topscript_list)
-    endscript_list = [elements.index(elem)-1 for elem in elements if elem['tag'] == '<p_break>'] # make list of last entries on page
-    elements = pop_repeating(elements, endscript_list)
-
-    # primary_heading = deter_primary_h(elements)
-    return elements
 
 def pop_repeating(elements, s_list): # based on list of first or last entries on page, deter if these entries are similair and thus a standard footer for example.
     sim_list = []
